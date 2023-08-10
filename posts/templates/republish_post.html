@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<head>
+    <title>Re-Publish Post</title>
+</head>
+<body>
+    <h1>Re-Publish Post</h1>
+
+    <p>Are you sure you want to republish the post "{{ post.title }}"?</p>
+
+    <form method="POST" action="{% url 'republish_post' post_id=post.id %}">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-success">Re-Publish</button>
+    </form>
+</body>
+{% endblock %}

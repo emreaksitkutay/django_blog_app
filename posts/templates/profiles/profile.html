@@ -1,0 +1,12 @@
+{% extends 'posts.html' %}
+
+{% block content %}
+  <div class="card">
+    <div class="card-body">
+      <h2 class="card-title">{{ user.username }}</h2>
+      <p>Email: {{ user.email }}</p>
+      <p>Bio: {{ user.profile.bio }}</p>
+      <p>Location: {{ user.profile.location }}</p>
+    </div>
+  </div>
+{% endblock %}

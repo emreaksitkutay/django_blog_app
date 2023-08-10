@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>Your Posts</h2>
+  <a href="{% url 'create_post' %}" class="btn btn-primary">Create New Post</a>
+  <br><br>
+  
+  <div class="row row-cols-3">
+    <div class="col-sm">
+      {% for post in posts %}
+      <div class="card">
+        <img src="{{ post.image.url }}" class="card-img-top" alt="{{ post.title }}">
+        <div class="card-body">
+          <h5 class="card-title">{{ post.title }}</h5>
+          <p class="card-text">{{ post.description }}</p>
+          <a href="{% url 'edit_post' post.id %}" class="btn btn-primary">Edit</a>
+          <a href="{% url 'delete_post' post.id %}" class="btn btn-danger">Delete</a>
+        </div>
+      </div>
+      {% empty %}
+      <h5>Not Found</h5>
+      {% endfor %}
+    </div>
+  </div>
+      
+  <br><br>
+<h1>Deleted Posts</h1>
+{% if deleted_posts %}
+    <div class="row row-cols-3">
+      <div class="col-sm">
+    {% for post in deleted_posts %}
+    <div class="card">
+      <img src="{{ post.image.url }}" class="card-img-top" alt="{{ post.title }}">
+      <div class="card-body">
+        <h5 class="card-title">{{ post.title }}</h5>
+        <p class="card-text">{{ post.description }}</p>
+        <a href="{% url 'republish_post' post.id %}" class="btn btn-success">Re-Publish</a>
+      </div>
+    </div>
+    {% endfor %}
+{% else %}
+  <p>No deleted posts found.</p>
+{% endif %}
+</div>
+</div>
+
+{% endblock %}
